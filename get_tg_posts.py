@@ -13,9 +13,10 @@ if sys.platform.startswith('win'):
 
 api_id = int(os.environ['TG_API_ID'])
 api_hash = os.environ['TG_API_HASH']
+bot_token = os.environ['TG_BOT_TOKEN']
 channel_username = os.environ.get('TG_CHANNEL', 'HouseMiva')
 
-client = TelegramClient('session_name', api_id, api_hash)
+client = TelegramClient('bot', api_id, api_hash).start(bot_token=bot_token)
 
 async def main():
     await client.start()
