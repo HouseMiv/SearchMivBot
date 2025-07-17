@@ -16,10 +16,10 @@ api_hash = os.environ['TG_API_HASH']
 bot_token = os.environ['TG_BOT_TOKEN']
 channel_username = os.environ.get('TG_CHANNEL', 'HouseMiva')
 
-client = TelegramClient('bot', api_id, api_hash).start(bot_token=bot_token)
+client = TelegramClient('bot', api_id, api_hash)
 
 async def main():
-    await client.start()
+    await client.start(bot_token=bot_token)
     print('Авторизация прошла успешно!')
     
     posts = []
@@ -29,7 +29,7 @@ async def main():
                 'id': message.id,
                 'text': message.text,
                 'date': message.date.isoformat(),
-                'link': f'https://t.me/HouseMiva/{message.id}'
+                'link': f'https://t.me/{channel_username}/{message.id}'
             })
     
     # Пробуем вывести в консоль, если не получается - сохраняем в файл
