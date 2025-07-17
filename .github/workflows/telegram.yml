@@ -2,7 +2,7 @@ name: Fetch Telegram Posts
 
 on:
   schedule:
-    - cron: '*/5 * * * *'  # Каждые 5 минут
+    - cron: '*/1 * * * *'  # Каждую минуту
   workflow_dispatch:
 
 jobs:
@@ -10,6 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
+      - name: Restore session file
+        run: |
+          echo "${{ secrets.TG_SESSION_B64 }}" | base64 -d > session_name.session
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -19,16 +23,11 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Restore session file
-        run: |
-          echo "${{ secrets.TG_SESSION_B64 }}" | base64 -d > session_name.session
-
       - name: Run get_tg_posts.py
         env:
           TG_API_ID: ${{ secrets.TG_API_ID }}
           TG_API_HASH: ${{ secrets.TG_API_HASH }}
           TG_CHANNEL: ${{ secrets.TG_CHANNEL }}
-          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
         run: python get_tg_posts.py
 
       - name: Commit and push if changed
