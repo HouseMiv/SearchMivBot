@@ -24,6 +24,7 @@ jobs:
           TG_API_ID: ${{ secrets.TG_API_ID }}
           TG_API_HASH: ${{ secrets.TG_API_HASH }}
           TG_CHANNEL: ${{ secrets.TG_CHANNEL }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
         run: python get_tg_posts.py
 
       - name: Commit and push if changed
