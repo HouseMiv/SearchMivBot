@@ -35,15 +35,10 @@ async def main():
                 'link': f'https://t.me/{channel_username}/{message.id}'
             })
     
-    # Пробуем вывести в консоль, если не получается - сохраняем в файл
-    try:
-        json_output = json.dumps(posts, ensure_ascii=False, indent=2)
-        print(json_output)
-    except UnicodeEncodeError:
-        # Если не удалось вывести в консоль, сохраняем в файл
-        with open('telegram_posts.json', 'w', encoding='utf-8') as f:
-            json.dump(posts, f, ensure_ascii=False, indent=2)
-        print('Данные сохранены в telegram_posts.json')
+    # Всегда сохраняем в файл
+    with open('telegram_posts.json', 'w', encoding='utf-8') as f:
+        json.dump(posts, f, ensure_ascii=False, indent=2)
+    print('Данные сохранены в telegram_posts.json')
 
 import asyncio
 asyncio.run(main())
