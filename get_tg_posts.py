@@ -2,6 +2,7 @@ from telethon import TelegramClient
 import json
 import sys
 import os
+from dotenv import load_dotenv
 
 # Устанавливаем UTF-8 кодировку для корректного вывода
 if sys.platform.startswith('win'):
@@ -11,12 +12,14 @@ if sys.platform.startswith('win'):
     except:
         pass  # Если не поддерживается, используем файл
 
+load_dotenv()
+
 api_id = int(os.environ['TG_API_ID'])
 api_hash = os.environ['TG_API_HASH']
 bot_token = os.environ['TG_BOT_TOKEN']
 channel_username = os.environ.get('TG_CHANNEL', 'HouseMiva')
 
-client = TelegramClient('bot', api_id, api_hash)
+client = TelegramClient('session_name', api_id, api_hash)
 
 async def main():
     await client.start(bot_token=bot_token)

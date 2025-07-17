@@ -1,0 +1,4 @@
+session_name.session
+*.session
+session_name.session.b64
+.env

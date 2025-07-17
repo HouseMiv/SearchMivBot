@@ -19,6 +19,10 @@ jobs:
       - name: Install dependencies
         run: pip install telethon
 
+      - name: Restore session file
+        run: |
+          echo "${{ secrets.TG_SESSION_B64 }}" | base64 -d > session_name.session
+
       - name: Run get_tg_posts.py
         env:
           TG_API_ID: ${{ secrets.TG_API_ID }}
