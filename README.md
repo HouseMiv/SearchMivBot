@@ -1,5 +1,5 @@
 # SearchMivBot
-# Telegram Channel Posts Archiver
+## Telegram Channel Posts Archiver
 
 Этот проект — простой скрипт на Python для получения последних сообщений из Telegram-канала и сохранения их в JSON файл.
 
