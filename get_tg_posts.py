@@ -26,7 +26,9 @@ async def main():
 
     # Получаем новые посты
     new_posts = []
-    async for message in client.iter_messages(channel_username, limit=5):
+    print(f"Ищем посты в канале: {channel_username}")
+    async for message in client.iter_messages(channel_username, limit=10):
+        print(f"Найдено сообщение: ID={message.id}, Текст={message.text[:50] if message.text else 'Нет текста'}...")
         if message.text:
             new_posts.append({
                 'id': message.id,
@@ -34,6 +36,7 @@ async def main():
                 'date': message.date.isoformat(),
                 'link': f'https://t.me/{channel_username}/{message.id}'
             })
+    print(f"Всего найдено текстовых сообщений: {len(new_posts)}")
 
     # Если есть новые посты, обновляем файл
     if new_posts:
@@ -51,7 +54,7 @@ async def main():
                     break
         
         if posts_changed:
-            # Сохраняем все новые посты (до 5 штук)
+            # Сохраняем все новые посты (до 10 штук)
             with open('telegram_posts.json', 'w', encoding='utf-8') as f:
                 json.dump(new_posts, f, ensure_ascii=False, indent=2)
             print(f'Обновлено {len(new_posts)} постов')
