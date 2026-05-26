@@ -1,4 +1,19 @@
-session_name.session
-*.session
-session_name.session.b64
+# Environment
 .env
+
+# Telethon sessions
+*.session
+*.session-journal
+*.session.b64
+
+# Python cache
+__pycache__/
+*.pyc
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
