@@ -9,6 +9,8 @@
 # Python cache
 __pycache__/
 *.pyc
+.pytest_cache/
+.ruff_cache/
 
 # IDE
 .vscode/
@@ -17,3 +19,6 @@ __pycache__/
 # OS
 .DS_Store
 Thumbs.db
+
+# Legacy static site output
+docs/

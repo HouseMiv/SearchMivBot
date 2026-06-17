@@ -1,6 +1,0 @@
-{
-  "python.defaultInterpreterPath": "C:\\Python313\\python.exe",
-  "basedpyright.analysis.extraPaths": [
-    "C:\\Users\\aveng\\AppData\\Roaming\\Python\\Python313\\site-packages"
-  ]
-}
